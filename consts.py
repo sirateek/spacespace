@@ -20,5 +20,13 @@ BOMB_FULL_POWER = 100
 BOMB_WAIT = 5
 BOMB_RADIUS = 300
 
+# Key Input
+LEFT_KEY = "Left"
+RIGHT_KEY = "Right"
+
+FIRE_KEY = " "
+
+BOMB_KEY = "Z"
+
 # Dev Environments
 IS_DEATHABLE = False  # Set to False for development purporsed only!
