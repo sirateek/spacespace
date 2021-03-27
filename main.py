@@ -9,6 +9,7 @@ from consts import *
 from elements import Ship, Bullet, Enemy
 from utils import distance
 from libs.strategys.importer import StarEnemyGenerationStrategy, EdgeEnemyGenerationStrategy
+from libs.keyboard_event_handler.importer import ShipMovementKeyPressedHandler, ShipMovementKeyReleasedHandler, BombKeyPressedHandler
 
 
 class SpaceGame(GameApp):
@@ -38,6 +39,16 @@ class SpaceGame(GameApp):
 
         self.enemies = []
         self.bullets = []
+        self.init_key_handlers()
+
+    def init_key_handlers(self):
+        key_pressed_handler = ShipMovementKeyPressedHandler(self, self.ship)
+        key_pressed_handler = BombKeyPressedHandler(
+            self, self.ship, key_pressed_handler)
+        self.key_pressed_handler = key_pressed_handler
+
+        key_released_handler = ShipMovementKeyReleasedHandler(self, self.ship)
+        self.key_released_handler = key_released_handler
 
     def add_enemy(self, enemy):
         self.enemies.append(enemy)
@@ -141,22 +152,6 @@ class SpaceGame(GameApp):
 
         self.update_score()
         self.update_bomb_power()
-
-    def on_key_pressed(self, event):
-        if event.keysym == 'Left':
-            self.ship.start_turn('LEFT')
-        elif event.keysym == 'Right':
-            self.ship.start_turn('RIGHT')
-        elif event.char == ' ':
-            self.ship.fire()
-        elif event.char.upper() == 'Z':
-            self.bomb()
-
-    def on_key_released(self, event):
-        if event.keysym == 'Left':
-            self.ship.stop_turn('LEFT')
-        elif event.keysym == 'Right':
-            self.ship.stop_turn('RIGHT')
 
 
 if __name__ == "__main__":

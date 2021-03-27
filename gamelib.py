@@ -3,7 +3,7 @@ import tkinter.ttk as ttk
 
 from abc import ABC, abstractmethod
 from utils import distance
-from libs.keyboard_event_handler import KeyboardHandler
+from libs.keyboard_event_handler.keyboard_event_handler import KeyboardHandler
 
 
 class GameElement(ABC):
