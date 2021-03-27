@@ -3,12 +3,13 @@ from random import randint
 
 from consts import *
 
+
 def direction_to_dxdy(direction):
-    return (math.cos(direction * math.pi / 180), 
-        math.sin(direction * math.pi / 180))
+    return (math.cos(direction * math.pi / 180),
+            math.sin(direction * math.pi / 180))
 
 
-def vector_len(x,y):
+def vector_len(x, y):
     return math.sqrt(x*x + y*y)
 
 
@@ -17,25 +18,22 @@ def distance(x1, y1, x2, y2):
 
 
 def normalize_vector(dx, dy):
-    l = vector_len(dx, dy)
-    if l > 0.01:
-        return (dx / l, dy / l)
-    else:
-        return (0, 0)
+    length = vector_len(dx, dy)
+    return (dx / length, dy / length) if length > 0.01 else (0, 0)
 
 
 def random_edge_position():
-    l = randint(0, CANVAS_HEIGHT * 2 + CANVAS_WIDTH * 2)
-    if l > CANVAS_WIDTH * 2 + CANVAS_HEIGHT:
+    length = randint(0, CANVAS_HEIGHT * 2 + CANVAS_WIDTH * 2)
+    if length > CANVAS_WIDTH * 2 + CANVAS_HEIGHT:
         x = 0
-        y = l - CANVAS_WIDTH * 2 + CANVAS_HEIGHT
-    elif l > CANVAS_WIDTH + CANVAS_HEIGHT:
-        x = l - CANVAS_WIDTH + CANVAS_HEIGHT
+        y = length - CANVAS_WIDTH * 2 + CANVAS_HEIGHT
+    elif length > CANVAS_WIDTH + CANVAS_HEIGHT:
+        x = length - CANVAS_WIDTH + CANVAS_HEIGHT
         y = CANVAS_HEIGHT
-    elif l > CANVAS_WIDTH:
+    elif length > CANVAS_WIDTH:
         x = CANVAS_WIDTH
-        y = l - CANVAS_WIDTH
+        y = length - CANVAS_WIDTH
     else:
-        x = l
+        x = length
         y = 0
     return (x, y)

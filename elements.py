@@ -7,6 +7,7 @@ from consts import *
 
 from utils import direction_to_dxdy, distance
 
+
 class FixedDirectionSprite(Sprite):
     def __init__(self, app, image_filename, x, y, vx, vy):
         super().__init__(app, image_filename, x, y)
@@ -45,7 +46,7 @@ class Ship(Sprite):
         self.is_turning_right = False
 
     def update(self):
-        dx,dy = direction_to_dxdy(self.direction)
+        dx, dy = direction_to_dxdy(self.direction)
 
         self.x += dx * SHIP_SPEED
         self.y += dy * SHIP_SPEED
@@ -64,9 +65,9 @@ class Ship(Sprite):
             self.is_turning_left = False
 
     def stop_turn(self, dir=None):
-        if (dir == None) or (dir.upper() == 'LEFT'):
+        if (dir is None) or (dir.upper() == 'LEFT'):
             self.is_turning_left = False
-        if (dir == None) or (dir.upper() == 'RIGHT'):
+        if (dir is None) or (dir.upper() == 'RIGHT'):
             self.is_turning_right = False
 
     def turn_left(self):
@@ -82,9 +83,9 @@ class Ship(Sprite):
         if self.app.bullet_count() >= MAX_NUM_BULLETS:
             return
 
-        dx,dy = direction_to_dxdy(self.direction)
+        dx, dy = direction_to_dxdy(self.direction)
 
-        bullet = Bullet(self.app, self.x, self.y, dx * BULLET_BASE_SPEED, dy * BULLET_BASE_SPEED)
+        bullet = Bullet(self.app, self.x, self.y, dx *
+                        BULLET_BASE_SPEED, dy * BULLET_BASE_SPEED)
 
         self.app.add_bullet(bullet)
-
