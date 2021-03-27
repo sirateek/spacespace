@@ -1,5 +1,5 @@
 from libs.keyboard_event_handler.keyboard_event_handler import GameKeyboardHandler
-from consts import UP_KEY, LEFT_KEY, DOWN_KEY, RIGHT_KEY, BOMB_KEY, FIRE_KEY
+from consts import LEFT_KEY, RIGHT_KEY, BOMB_KEY, FIRE_KEY
 
 
 class ShipMovementKeyPressedHandler(GameKeyboardHandler):
