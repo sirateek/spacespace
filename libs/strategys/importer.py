@@ -1,0 +1,3 @@
+from libs.strategys.edge_enemy_generation_strategy import EdgeEnemyGenerationStrategy
+from libs.strategys.star_enemy_generation_strategy import StarEnemyGenerationStrategy
+from libs.strategys.enemy_generation_strategy import EnemyGenerationStrategy

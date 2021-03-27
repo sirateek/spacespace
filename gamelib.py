@@ -3,6 +3,7 @@ import tkinter.ttk as ttk
 
 from abc import ABC, abstractmethod
 from utils import distance
+from libs.keyboard_event_handler import KeyboardHandler
 
 
 class GameElement(ABC):
@@ -101,6 +102,8 @@ class GameApp(ttk.Frame):
     def __init__(self, parent, canvas_width=800, canvas_height=500, update_delay=33):
         super().__init__(parent)
         self.parent = parent
+        self.key_pressed_handler = KeyboardHandler()
+        self.key_released_handler = KeyboardHandler()
 
         self.canvas_width = canvas_width
         self.canvas_height = canvas_height
@@ -163,7 +166,9 @@ class GameApp(ttk.Frame):
         pass
 
     def on_key_pressed(self, event):
-        pass
+        # Call the key_board_handler object to handle the key_pressed event
+        self.key_pressed_handler.handle(event)
 
     def on_key_released(self, event):
-        pass
+        # Call the key_board_handler object to handle the key_released event
+        self.key_released_handler.handle(event)

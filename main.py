@@ -3,14 +3,12 @@ from random import randint, random
 
 import tkinter as tk
 
-from gamelib import Sprite, GameApp, Text
-from abc import ABC, abstractmethod
+from gamelib import Sprite, GameApp, Text, KeyboardHandler
 
 from consts import *
 from elements import Ship, Bullet, Enemy
-from utils import random_edge_position, normalize_vector, direction_to_dxdy, vector_len, distance
-
-IS_DEATHABLE = False
+from utils import distance
+from libs.strategys.importer import StarEnemyGenerationStrategy, EdgeEnemyGenerationStrategy
 
 
 class SpaceGame(GameApp):
@@ -159,44 +157,6 @@ class SpaceGame(GameApp):
             self.ship.stop_turn('LEFT')
         elif event.keysym == 'Right':
             self.ship.stop_turn('RIGHT')
-
-
-class EnemyGenerationStrategy(ABC):
-    @abstractmethod
-    def generate(self, space_game, ship):
-        pass
-
-
-class StarEnemyGenerationStrategy(EnemyGenerationStrategy):
-    def generate(self, space_game, ship):
-        enemies = []
-
-        x = randint(100, CANVAS_WIDTH - 100)
-        y = randint(100, CANVAS_HEIGHT - 100)
-
-        while vector_len(x - ship.x, y - ship.y) < 200:
-            x = randint(100, CANVAS_WIDTH - 100)
-            y = randint(100, CANVAS_HEIGHT - 100)
-
-        for d in range(18):
-            dx, dy = direction_to_dxdy(d * 20)
-            enemy = Enemy(space_game, x, y, dx * ENEMY_BASE_SPEED,
-                          dy * ENEMY_BASE_SPEED)
-            enemies.append(enemy)
-
-        return enemies
-
-
-class EdgeEnemyGenerationStrategy(EnemyGenerationStrategy):
-    def generate(self, space_game, ship):
-        x, y = random_edge_position()
-        vx, vy = normalize_vector(ship.x - x, ship.y - y)
-
-        vx *= ENEMY_BASE_SPEED
-        vy *= ENEMY_BASE_SPEED
-
-        enemy = Enemy(space_game, x, y, vx, vy)
-        return [enemy]
 
 
 if __name__ == "__main__":
