@@ -19,3 +19,6 @@ SCORE_WAIT = 10
 BOMB_FULL_POWER = 100
 BOMB_WAIT = 5
 BOMB_RADIUS = 300
+
+# Dev Environments
+IS_DEATHABLE = False  # Set to False for development purporsed only!
