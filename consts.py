@@ -29,4 +29,4 @@ FIRE_KEY = " "
 BOMB_KEY = "Z"
 
 # Dev Environments
-IS_DEATHABLE = False  # Set to False for development purporsed only!
+IS_DEATHABLE = True  # Set to False for development purporsed only!
