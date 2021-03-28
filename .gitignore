@@ -1,1 +1,4 @@
 __pycache__
+
+# Ignore PyTest Cache
+.pytest_cache
