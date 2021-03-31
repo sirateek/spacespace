@@ -2,3 +2,9 @@ __pycache__
 
 # Ignore PyTest Cache
 .pytest_cache
+
+# Ignore .vscode
+*.vscode
+
+#Mac .DS_Store
+*.DS_Store
